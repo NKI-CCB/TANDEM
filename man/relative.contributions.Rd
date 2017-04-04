@@ -4,7 +4,7 @@
 \alias{relative.contributions}
 \title{Determine the relative contribution per data type}
 \usage{
-relative.contributions(fit, x, data_types)
+relative.contributions(fit, x, data_types, lambda_glmnet = "lambda.1se")
 }
 \arguments{
 \item{fit}{Either a tandem-object or a cv.glmnet-object}
@@ -15,6 +15,10 @@ relative.contributions(fit, x, data_types)
 type it belongs. This vector doesn't need to correspond to the 'upstream' vector used in tandem(). For example, the upstream
 features be spread across various data types (such as mutation, CNA, methylation and cancer type) and the downstream features
 could be gene expression.}
+
+\item{lambda_glmnet}{Only used when fit is a cv.glmnet object. Should glmnet use lambda.min or lambda.1se? Default is lambda.1se.
+Note that for TANDEM objects, the lambda_upstream and lambda_downstream parameters should be specified during the tandem() call, as
+they are used while fitting the model.}
 }
 \value{
 A vector that indicates the relative contribution per data type. These numbers sum up to one.
@@ -64,4 +68,3 @@ barplot(contr_tandem, ylab="Relative contribution", main="TANDEM", ylim=0:1)
 barplot(contr_glmnet, ylab="Relative contribution", main="Classic approach", ylim=0:1)
 par(mfrow=c(1,1))
 }
-

@@ -58,7 +58,7 @@ tandem = function(x, y, upstream, family="gaussian", nfolds=10, foldid=NULL, lam
   residuals = y - glmnet::predict.cv.glmnet(fit1, newx=x[,upstream], s=lambda_upstream)
   fit2 = glmnet::cv.glmnet(x[,!upstream], residuals, foldid=foldid, ...)
 
-  beta0 = glmnet::coef.cv.glmnet(fit1)[1] + glmnet::coef.cv.glmnet(fit2)[1]
+  beta0 = glmnet::coef.cv.glmnet(fit1, s=lambda_upstream)[1] + glmnet::coef.cv.glmnet(fit2, s=lambda_downstream)[1]
   beta = matrix(NA, ncol(x), 1)
   beta[upstream,] = as.matrix(glmnet::coef.cv.glmnet(fit1, s=lambda_upstream)[-1,,drop=F])
   beta[!upstream,] = as.matrix(glmnet::coef.cv.glmnet(fit2, s=lambda_downstream)[-1,,drop=F])
@@ -235,6 +235,9 @@ coef.tandem = function(object, ...) {
 #' type it belongs. This vector doesn't need to correspond to the 'upstream' vector used in tandem(). For example, the upstream
 #' features be spread across various data types (such as mutation, CNA, methylation and cancer type) and the downstream features
 #' could be gene expression.
+#' @param lambda_glmnet Only used when fit is a cv.glmnet object. Should glmnet use lambda.min or lambda.1se? Default is lambda.1se.
+#' Note that for TANDEM objects, the lambda_upstream and lambda_downstream parameters should be specified during the tandem() call, as
+#' they are used while fitting the model.
 #' @return A vector that indicates the relative contribution per data type. These numbers sum up to one.
 #' @examples
 #' ## simple example
@@ -278,7 +281,7 @@ coef.tandem = function(object, ...) {
 #' barplot(contr_glmnet, ylab="Relative contribution", main="Classic approach", ylim=0:1)
 #' par(mfrow=c(1,1))
 #' @export
-relative.contributions = function(fit, x, data_types) {
+relative.contributions = function(fit, x, data_types, lambda_glmnet="lambda.1se") {
   if(class(fit)!="tandem" & class(fit)!="cv.glmnet")
     stop("fit needs to be etiher a tandem-object or a cv.glmnet-object")
   if(ncol(x)!=length(data_types))
@@ -293,7 +296,7 @@ relative.contributions = function(fit, x, data_types) {
     if(class(fit)=="tandem") {
       beta[ind] = coef.tandem(fit)[-1][ind]
     } else if(class(fit)=="cv.glmnet") {
-      beta[ind] = glmnet::coef.cv.glmnet(fit)[-1][ind]
+      beta[ind] = glmnet::coef.cv.glmnet(fit, s=lambda_glmnet)[-1][ind]
     }
     i = as.character(i)
     betas[[i]] = beta

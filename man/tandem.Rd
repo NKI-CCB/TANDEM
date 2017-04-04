@@ -45,4 +45,3 @@ fit = tandem(x, y, upstream, alpha=0.5)
 beta = coef(fit)
 y_hat = predict(fit, newx=x)
 }
-

@@ -53,7 +53,7 @@ barplot(contr_tandem, ylab="Relative contribution", main="TANDEM", ylim=0:1, las
 barplot(contr_glmnet, ylab="Relative contribution", main="Classic approach", ylim=0:1, las=2)
 ```
 
-Next, we'll verify that TANDEM can do this without losing predictive performance. To do so, we perform a nested cross-validation, where the inner loop is used to identify the optimal $\lambda$ (both in TANDEM and in glmnet) and the outer loop is used to assess the predictive performance. To fix the cross-validation folds in both the inner and the outer loop, we'll set the random seed to one before running the function. This ensures that the results are comparable. Note that though in this example TANDEM achieves a slightly lower MSE than the classic approach (glmnet), we show in our manuscript (Aben et al., 2016, in press) that both methods typically achieve similar predictive performance.
+Next, we'll verify that TANDEM can do this without losing predictive performance. To do so, we perform a nested cross-validation, where the inner loop is used to identify the optimal $\lambda$ (both in TANDEM and in glmnet) and the outer loop is used to assess the predictive performance. To fix the cross-validation folds in both the inner and the outer loop, we'll set the random seed to one before running the function. This ensures that the results are comparable. Note that though in this example TANDEM achieves a slightly lower MSE than the classic approach (glmnet), we show in our manuscript (Aben et al., 2016) that both methods typically achieve similar predictive performance.
 ```{r, fig.show='hold'}
 # assess the prediction error in a nested cv-loop
 # fix the seed to have the same foldids between the two methods

@@ -18,4 +18,3 @@ example_data
 A small artificial data set
 }
 \keyword{datasets}
-

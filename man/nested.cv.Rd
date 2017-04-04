@@ -55,4 +55,3 @@ set.seed(1)
 cv_glmnet = nested.cv(x, y, upstream, method="glmnet", alpha=0.5)
 barplot(c(cv_tandem$mse, cv_glmnet$mse), ylab="MSE", names=c("TANDEM", "Classic approach"))
 }
-
