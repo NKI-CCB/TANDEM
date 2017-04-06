@@ -11,7 +11,3 @@ On the winbuilder, I only received the following note:
 Maintainer: 'Nanne Aben <nanne.aben@gmail.com>'
 
 I am indeed the maintainer, so that's correct.
-
-On my previous submission, I also got:
-* checking files in 'vignettes' ... WARNING
-I've resolved this issue now.
