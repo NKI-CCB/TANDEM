@@ -16,4 +16,6 @@ I am indeed the maintainer, so that's correct.
 
 "Please add the DOI in the form <doi:10.1093/bioinformatics/btw449> to the reference."
 
-I've added the DOI. The citation now reads "(Aben et al., 2016, doi:10.1093/bioinformatics/btw449)". I wasn't sure if you preferred the <> to be included, i.e. (Aben et al., 2016, <doi:10.1093/bioinformatics/btw449>) or (Aben et al., 2016,) <doi:10.1093/bioinformatics/btw449>. Let me know if you'd like me to change that!
+"... the <> are essential for auto-linking."
+
+The citation now reads "(Aben et al., 2016, <doi:10.1093/bioinformatics/btw449>)".
