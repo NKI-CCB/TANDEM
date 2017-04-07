@@ -66,4 +66,4 @@ barplot(c(cv_tandem$mse, cv_glmnet$mse), ylab="MSE", names=c("TANDEM", "Classic 
 ```
 
 ## References
-Aben, Nanne, et al. "TANDEM: a two-stage approach to maximize interpretability of drug response models based on multiple molecular data types." Bioinformatics 32.17 (2016): i413-i420.
+Aben, Nanne, et al. "TANDEM: a two-stage approach to maximize interpretability of drug response models based on multiple molecular data types." Bioinformatics 32.17 (2016): i413-i420. doi:10.1093/bioinformatics/btw449
