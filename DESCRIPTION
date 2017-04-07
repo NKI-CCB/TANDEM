@@ -5,7 +5,7 @@ Version: 1.0.1
 Date: 2017-04-07
 Author: Nanne Aben
 Maintainer: Nanne Aben <nanne.aben@gmail.com>
-Description: A two-stage regression method that can be used when various input data types are correlated, for example gene expression and methylation in drug response prediction. In the first stage it uses the upstream features (such as methylation) to predict the response variable (such as drug response), and in the second stage it uses the downstream features (such as gene expression) to predict the residuals of the first stage. In our manuscript (Aben et al., 2016, doi:10.1093/bioinformatics/btw449), we show that using TANDEM prevents the model from being dominated by gene expression and that the features selected by TANDEM are more interpretable.
+Description: A two-stage regression method that can be used when various input data types are correlated, for example gene expression and methylation in drug response prediction. In the first stage it uses the upstream features (such as methylation) to predict the response variable (such as drug response), and in the second stage it uses the downstream features (such as gene expression) to predict the residuals of the first stage. In our manuscript (Aben et al., 2016, <doi:10.1093/bioinformatics/btw449>), we show that using TANDEM prevents the model from being dominated by gene expression and that the features selected by TANDEM are more interpretable.
 Depends: R (>= 2.10)
 Imports: glmnet, Matrix
 License: GPL-2
