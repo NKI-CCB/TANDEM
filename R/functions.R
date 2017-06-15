@@ -314,7 +314,7 @@ relative.contributions = function(fit, x, data_types, lambda_glmnet="lambda.1se"
     i = as.character(i)
     a[i] = sum(y_hat[[i]]^2)
     for(j in unique(data_types)) {
-      j = as.character(i)
+      j = as.character(j)
       if(i == j)
         next
       a[i] = a[i] + t(y_hat[[i]])%*%y_hat[[j]]

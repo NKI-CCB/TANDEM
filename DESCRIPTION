@@ -1,7 +1,7 @@
 Package: TANDEM
 Type: Package
 Title: A Two-Stage Approach to Maximize Interpretability of Drug Response Models Based on Multiple Molecular Data Types
-Version: 1.0.1
+Version: 1.0.2
 Date: 2017-04-07
 Author: Nanne Aben
 Maintainer: Nanne Aben <nanne.aben@gmail.com>
