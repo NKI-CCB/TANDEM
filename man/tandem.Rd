@@ -4,8 +4,17 @@
 \alias{tandem}
 \title{Fits a TANDEM model by performing a two-stage regression}
 \usage{
-tandem(x, y, upstream, family = "gaussian", nfolds = 10, foldid = NULL,
-  lambda_upstream = "lambda.1se", lambda_downstream = "lambda.1se", ...)
+tandem(
+  x,
+  y,
+  upstream,
+  family = "gaussian",
+  nfolds = 10,
+  foldid = NULL,
+  lambda_upstream = "lambda.1se",
+  lambda_downstream = "lambda.1se",
+  ...
+)
 }
 \arguments{
 \item{x}{A feature matrix, where the rows correspond to samples and the columns to features.}

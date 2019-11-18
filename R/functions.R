@@ -55,13 +55,13 @@ tandem = function(x, y, upstream, family="gaussian", nfolds=10, foldid=NULL, lam
   }
 
   fit1 = glmnet::cv.glmnet(x[,upstream], y, foldid=foldid, ...)
-  residuals = y - glmnet::predict.cv.glmnet(fit1, newx=x[,upstream], s=lambda_upstream)
+  residuals = y - stats::predict(fit1, newx=x[,upstream], s=lambda_upstream)
   fit2 = glmnet::cv.glmnet(x[,!upstream], residuals, foldid=foldid, ...)
 
-  beta0 = glmnet::coef.cv.glmnet(fit1, s=lambda_upstream)[1] + glmnet::coef.cv.glmnet(fit2, s=lambda_downstream)[1]
+  beta0 =stats::coef(fit1, s=lambda_upstream)[1] +stats::coef(fit2, s=lambda_downstream)[1]
   beta = matrix(NA, ncol(x), 1)
-  beta[upstream,] = as.matrix(glmnet::coef.cv.glmnet(fit1, s=lambda_upstream)[-1,,drop=F])
-  beta[!upstream,] = as.matrix(glmnet::coef.cv.glmnet(fit2, s=lambda_downstream)[-1,,drop=F])
+  beta[upstream,] = as.matrix(stats::coef(fit1, s=lambda_upstream)[-1,,drop=F])
+  beta[!upstream,] = as.matrix(stats::coef(fit2, s=lambda_downstream)[-1,,drop=F])
   rownames(beta) = colnames(x)
   beta = Matrix::Matrix(beta)
   fit = list(beta0=beta0, beta=beta)
@@ -187,7 +187,7 @@ nested.cv = function(x, y, upstream, method="tandem", family="gaussian", nfolds=
       y_hat[ind] = as.vector(predict.tandem(fit, newx=x_test))
     } else {
       fit = glmnet::cv.glmnet(x_train, y_train, family=family, foldid=foldid_i, ...)
-      y_hat[ind] = as.vector(glmnet::predict.cv.glmnet(fit, newx=x_test, s=lambda_glmnet))
+      y_hat[ind] = as.vector(stats::predict(fit, newx=x_test, s=lambda_glmnet))
     }
   }
   mse = mean((y-y_hat)^2)
@@ -296,7 +296,7 @@ relative.contributions = function(fit, x, data_types, lambda_glmnet="lambda.1se"
     if(class(fit)=="tandem") {
       beta[ind] = coef.tandem(fit)[-1][ind]
     } else if(class(fit)=="cv.glmnet") {
-      beta[ind] = glmnet::coef.cv.glmnet(fit, s=lambda_glmnet)[-1][ind]
+      beta[ind] =stats::coef(fit, s=lambda_glmnet)[-1][ind]
     }
     i = as.character(i)
     betas[[i]] = beta
